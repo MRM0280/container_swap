@@ -39,6 +39,7 @@ class _AnimationScreenState extends State<AnimationScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    // set image index
     Random random = new Random();
     imageIndex = random.nextInt(images.length);
   }
@@ -127,17 +128,20 @@ class _AnimationScreenState extends State<AnimationScreen> {
             top: boxPosition!.dy,
             child: InkWell(
               onTap: () {
+                // change image index
                 Random random = new Random();
                 imageIndex = random.nextInt(images.length);
               },
               child: Container(
                 height: boxSize,
                 width: boxSize,
+                // image
                 child: Image.network(
                   images[imageIndex],
                   fit: BoxFit.cover,
                   loadingBuilder: (context, child, loadingProgress) {
                     if (loadingProgress != null) {
+                      // image loading
                       return CircularProgressIndicator();
                     }
                     return child;
